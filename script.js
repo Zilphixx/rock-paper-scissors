@@ -14,7 +14,19 @@ function getComputerChoice() {
   }
 }
 
+//FUNCTION THAT GETS THE PLAYER CHOICE 
+function getPlayerChoice() {
+  //VARIABLE TO STORE USER INPUT
+  const CHOICE = prompt('Enter your round: (rock, paper, scissors)', '');
+
+  //MAKE USER INPUT UPPERCASE TO MAKE COMPARISON EASIER
+  const convertedChoice = CHOICE.toUpperCase();
+
+  //RETURN THE PLAYER CHOICE TO CONVERTED UPPERCASE
+  return convertedChoice;
+}
 
 
 
+//alert(getPlayerChoice());
 //alert(getComputerChoice());
