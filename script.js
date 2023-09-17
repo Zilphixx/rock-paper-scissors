@@ -83,8 +83,92 @@ function playRound(playerSelection, computerSelection) {
   return result;
 }
 
-//PRINTS THE RESULT IN CONSOLE
-console.log(playRound(getPlayerChoice(), getComputerChoice()));
+//FUNCTION TO MAKE THE GAME 5 ROUNDS 
+function game() {
+
+  //VARIABLE TO HOLD RESULT CHECKER GAME RESULT, PLAYER SCORE, AND COMPUTER SCORE
+  let result = "";
+  let gameResult = "";
+  let playerScore = 0;
+  let computerScore = 0;
+
+  //PLAY THE GAME 5 TIMES
+  //FIRST GAME
+  result = playRound(getPlayerChoice(), getComputerChoice());
+  if (result.includes('win')) {
+    console.log(result);
+    playerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  } else {
+    console.log(result);
+    computerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  }
+
+  //SECOND GAME
+  result = playRound(getPlayerChoice(), getComputerChoice());
+  if (result.includes('win')) {
+    console.log(result);
+    playerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  } else {
+    console.log(result);
+    computerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  }
+
+  //THIRD GAME
+  result = playRound(getPlayerChoice(), getComputerChoice());
+  if (result.includes('win')) {
+    console.log(result);
+    playerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  } else {
+    console.log(result);
+    computerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  }
+
+  //FOURTH GAME
+  result = playRound(getPlayerChoice(), getComputerChoice());
+  if (result.includes('win')) {
+    console.log(result);
+    playerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  } else {
+    console.log(result);
+    computerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  }
+
+  //FIFTH GAME
+  result = playRound(getPlayerChoice(), getComputerChoice());
+  if (result.includes('win')) {
+    console.log(result);
+    playerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  } else {
+    console.log(result);
+    computerScore += 1;
+    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
+  }
+  
+
+
+  //COMPARE THE SCORE
+  if (playerScore > computerScore) {
+    gameResult = "You win! Very good!";
+  } else {
+    gameResult = "You lose! Not very good!";
+  }
+
+  return gameResult;
+}
+
+
+//PRINTS THE GAME RESULT
+console.log(game());
+
 
 
 
