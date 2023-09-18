@@ -1,38 +1,20 @@
-
-//FUNCTION THAT RETURNS RANDOM SELECTION OF ROCK PAPER SCISSORS
 function getComputerChoice() {
-  //VARIABLE TO STORE RANDOM NUMBER FROM 1 TO 3
-  const CHOICE = Math.floor(Math.random() * 3) + 1;
+  const choice = Math.floor(Math.random() * 3) + 1;
 
-  //RETURN STRING DEPENDING ON THE RANDOM NUMBER ROCK IF 1, PAPER IF 2 AND SCISSORS IF 3
-  if (CHOICE === 1) {
+  //RETURN STRING DEPENDING ON THE RANDOM NUMBER 
+  if (choice === 1) {
     return "ROCK";
-  } else if (CHOICE === 2) {
+  } else if (choice === 2) {
     return "PAPER";
   } else {
     return "SCISSORS";
   }
 }
 
-//FUNCTION THAT GETS THE PLAYER CHOICE 
-function getPlayerChoice() {
-  //VARIABLE TO STORE USER INPUT
-  const CHOICE = prompt('Enter your round: (rock, paper, scissors)', '');
-
-  //MAKE USER INPUT UPPERCASE TO MAKE COMPARISON EASIER
-  const convertedChoice = CHOICE.toUpperCase();
-
-  //RETURN THE PLAYER CHOICE TO CONVERTED UPPERCASE
-  return convertedChoice;
-}
-
-//FUNCTION FOR COMPARING THE PLAYER AND COMPUTER CHOICE 
 function playRound(playerSelection, computerSelection) {
   
-  //VARIABLE TO HOLD THE RESULT
   let result = "";
 
-  //COMPARE THE PLAYER AND COMPUTER CHOICE 
   if (playerSelection === 'ROCK') {
     if (computerSelection === 'ROCK') {
       result = "It's a draw! Rock is equal to Rock";
@@ -59,98 +41,70 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
-  //RETURN THE RESULT
   return result;
 }
 
-//FUNCTION TO MAKE THE GAME 5 ROUNDS 
-function game() {
 
-  //VARIABLE TO HOLD RESULT CHECKER GAME RESULT, PLAYER SCORE, AND COMPUTER SCORE
-  let result = "";
-  let gameResult = "";
-  let playerScore = 0;
-  let computerScore = 0;
+const yourScore = document.querySelector("#your-score");
+const enemyScore = document.querySelector("#enemy-score");
+const buttons = document.querySelectorAll("button");
+const resultContainer = document.querySelector(".result");
+const text = document.createElement("p");
 
-  //PLAY THE GAME 5 TIMES
-  //FIRST GAME
-  result = playRound(getPlayerChoice(), getComputerChoice());
-  if (result.includes('win')) {
-    console.log(result);
-    playerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  } else {
-    console.log(result);
-    computerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  }
+let result = "";
+let playerScore = 0;
+let computerScore = 0;
+let gameResult = "";
 
-  //SECOND GAME
-  result = playRound(getPlayerChoice(), getComputerChoice());
-  if (result.includes('win')) {
-    console.log(result);
-    playerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  } else {
-    console.log(result);
-    computerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  }
+yourScore.textContent += playerScore;
+enemyScore.textContent += computerScore;
 
-  //THIRD GAME
-  result = playRound(getPlayerChoice(), getComputerChoice());
-  if (result.includes('win')) {
-    console.log(result);
-    playerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  } else {
-    console.log(result);
-    computerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  }
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    result = playRound(button.textContent, getComputerChoice());
+    if (result.includes("win")) {
+      text.textContent = result; 
+      resultContainer.appendChild(text);
+      playerScore += 1;
+      yourScore.textContent = `Your score: ${playerScore}`;
+      scoreChecking();
+    } else {
+      text.textContent = result; 
+      resultContainer.appendChild(text);
+      computerScore += 1;
+      enemyScore.textContent = `Enemy score: ${computerScore}`;
+      scoreChecking();
+    }
 
-  //FOURTH GAME
-  result = playRound(getPlayerChoice(), getComputerChoice());
-  if (result.includes('win')) {
-    console.log(result);
-    playerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  } else {
-    console.log(result);
-    computerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  }
+  });
+});
 
-  //FIFTH GAME
-  result = playRound(getPlayerChoice(), getComputerChoice());
-  if (result.includes('win')) {
-    console.log(result);
-    playerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  } else {
-    console.log(result);
-    computerScore += 1;
-    console.log('Your Score: ' + playerScore + ' \nEnemy Score: ' + computerScore);
-  }
-  
+function scoreChecking() {
 
+  const tryAgain = document.createElement("button");
+  tryAgain.textContent = "Try Again";
 
-  //COMPARE THE SCORE
-  if (playerScore > computerScore) {
-    gameResult = "You win! Very good!";
-  } else {
-    gameResult = "You lose! Not very good!";
-  }
-
-  return gameResult;
+  if (playerScore === 5 || computerScore === 5) {
+    if (playerScore > computerScore) {
+      text.textContent = "You win! Congratulations!";
+      resultContainer.appendChild(text);
+      resultContainer.appendChild(tryAgain);
+      tryAgain.addEventListener("click", () => {
+        location.reload();
+      });
+      buttons.forEach((button) => {
+        button.disabled = true;
+      });
+    } else {
+      text.textContent = "You lose! Better luck next time.";
+      resultContainer.appendChild(text);
+      resultContainer.appendChild(tryAgain);
+      tryAgain.addEventListener("click", () => {
+        location.reload();
+      });
+      buttons.forEach((button) => {
+        button.disabled = true;
+      });
+    }
+  } 
 }
-
-
-//PRINTS THE GAME RESULT
-console.log(game());
-
-
-
-
-//alert(getPlayerChoice());
-//alert(getComputerChoice());
