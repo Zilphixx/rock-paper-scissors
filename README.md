@@ -1,6 +1,6 @@
 # rock-paper-scissors
 
-Live site: https://Zilphixx.github,io/rock-paper-scissors  
+Live site: https://Zilphixx.github.io/rock-paper-scissors  
   
 
 Simple rock, paper, scissors game
